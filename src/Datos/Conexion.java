@@ -11,7 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
- * @author hells
+ * @author Martinez Franzoni Victor Manuel
+ * @version 3/19/2020 0.1.2
  */
 public class Conexion {
     private static String db = "puntodeventa";

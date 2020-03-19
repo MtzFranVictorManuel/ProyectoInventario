@@ -5,6 +5,12 @@
  */
 package puntoventa;
 
+/**
+ * @author Martinez Franzoni Victor Manuel
+ * @version 03/19/2020 0.1.2
+ * @see 
+ */
+
 import Datos.Conexion;
 import java.sql.*;
 import java.util.*;
@@ -93,7 +99,15 @@ public class Inventario {
     private final String SQL_SELECT
             = "SELECT idProductos, nombre, precio, cantidad, descripcion FROM productos ORDER BY idProductos";
     
-   
+    /**Inserta in nobre, un precio, una cantidad y una descriocion en la base de datos
+     * y regresa el registro de artefactos (rows).
+     * @return regresa el numero de artefactos
+     * @param nombreProducto recibe el nombre del produto
+     * @param precioPorducto recibe el precio del producto
+     * @param cantidadProducto recibe la cantidad que se tiene que registrar del producto
+     * @param descripProducto recibe la descripcion del producto ingtresado.
+     */
+    
     public int insert(String nombreProducto, float precioPorducto, int cantidadProducto, String descripProducto){
         Connection cn = null;
         PreparedStatement stmt = null;
@@ -119,6 +133,10 @@ public class Inventario {
         }
         return rows;
     }
+    /**
+     * Metodo que actualiza la base de datos
+     * @return@regresa el numero de artefactos que fueron actualizados
+     */
     
     public int update(int idProductos, String nombreProducto, float precioPorducto, int cantidadProducto, String descripProducto){
         Connection cn = null;
@@ -145,7 +163,11 @@ public class Inventario {
         }
         return rows;
     }
-    
+    /**
+     * Metodo que se encarga de borrar un elemento en la base de datos, recibiendo
+     * como variable el identificador del producto
+     * @return El metodo regresa un artefacto el cual fue borrado
+     */
     public int delete(int idProductos){
         Connection cn = null;
         PreparedStatement stmt = null;
@@ -166,6 +188,10 @@ public class Inventario {
         }
         return rows;
     }
+    /**
+     * El metodo select no recibe ninguna variable por que solo va a guardar en una lista
+     * @return El metodo regresa una lista con los valores obtenidos en la base de datos.
+     */
     
     public List<Inventario> select(){
         Connection cn = null;
