@@ -22,6 +22,7 @@ public class Inventario {
     private float precio_Producto;
     private int cantidad_Producto;
     private String descripcion_Producto;
+    private String fechaIngreso;
     
     public Inventario() {
         this.idProductos = idProductos;
@@ -31,12 +32,21 @@ public class Inventario {
         this.descripcion_Producto = descripcion_Producto;
     }
 
-    public Inventario(int idProductos, String nombre_Producto, float precio_Producto, int cantidad_Producto, String descripcion_Producto) {
+    public Inventario(int idProductos, String nombre_Producto, float precio_Producto, int cantidad_Producto, String descripcion_Producto, String fechaIngreso) {
         this.idProductos = idProductos;
         this.nombre_Producto = nombre_Producto;
         this.precio_Producto = precio_Producto;
         this.cantidad_Producto = cantidad_Producto;
         this.descripcion_Producto = descripcion_Producto;
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public void setFechaIngreso(String fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getFechaIngreso() {
+        return fechaIngreso;
     }
 
     public int getIdProductos() {
@@ -83,7 +93,7 @@ public class Inventario {
     public String toString(){
         return "Inventario{" + "idProducto: " + idProductos + " nombre: " + 
                 nombre_Producto + " precio: " + precio_Producto + " cantidad: " 
-                + cantidad_Producto + " descripcion : " + descripcion_Producto + '}';
+                + cantidad_Producto + " descripcion : " + descripcion_Producto +" Fecha:" + fechaIngreso +'}';
     }
     
     
@@ -97,7 +107,7 @@ public class Inventario {
             = "DELETE FROM productos WHERE idProductos = ?";
 
     private final String SQL_SELECT
-            = "SELECT idProductos, nombre, precio, cantidad, descripcion FROM productos ORDER BY idProductos";
+            = "SELECT idProductos, nombre, precio, cantidad, descripcion, fecha FROM productos ORDER BY idProductos";
     
     /**Inserta in nobre, un precio, una cantidad y una descriocion en la base de datos
      * y regresa el registro de artefactos (rows).
@@ -163,11 +173,12 @@ public class Inventario {
         }
         return rows;
     }
-    /**
+        /**
      * Metodo que se encarga de borrar un elemento en la base de datos, recibiendo
      * como variable el identificador del producto
      * @return El metodo regresa un artefacto el cual fue borrado
      */
+    
     public int delete(int idProductos){
         Connection cn = null;
         PreparedStatement stmt = null;
@@ -209,12 +220,14 @@ public class Inventario {
                 float precio = rs.getFloat(3);
                 int cantidad = rs.getInt(4);
                 String descripcion = rs.getString(5);
+                String fecha = rs.getString(6);
                 inventario = new Inventario();
                 inventario.setIdProductos(idProductos);
                 inventario.setNombre_Producto(nombre);
                 inventario.setPrecio_Producto(precio);
                 inventario.setCantidad_Producto(cantidad);
                 inventario.setDescripcion_Producto(descripcion);
+                inventario.setFechaIngreso(fecha);
                 inventarios.add(inventario);
             }
         }catch(SQLException e){
