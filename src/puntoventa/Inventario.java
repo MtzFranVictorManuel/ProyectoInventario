@@ -40,7 +40,7 @@ public class Inventario {
         this.descripcion_Producto = descripcion_Producto;
         this.fechaIngreso = fechaIngreso;
     }
-
+    //<editor-fold defaultstate="collapsed" desc="Gets and Sets">
     public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
@@ -87,7 +87,7 @@ public class Inventario {
 
     public void setDescripcion_Producto(String descripcion_Producto) {
         this.descripcion_Producto = descripcion_Producto;
-    }
+    }//</editor-fold>
 
     @Override
     public String toString(){
